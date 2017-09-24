@@ -3,7 +3,7 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for sitemap in sitemaps %}
         <sitemap>
-            <loc>{{ request.build_absolute_uri }}{{ sitemap.uri }}</loc>
+            <loc>http://{{ request.META.HTTP_HOST }}/{{language}}/sitemap/{{ sitemap.uri }}</loc>
             <lastmod>{{ sitemap.updated_at|date:'c' }}</lastmod>
         </sitemap>
     {% endfor %}

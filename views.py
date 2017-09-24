@@ -28,3 +28,9 @@ def Blog(request):
     language = translation.get_language()
     languages = settings.LANGUAGES
     return render(request, 'sitemap/blogs.html', { 'blogs' : blogs, 'language': language, 'languages' : languages })
+
+def Label(request):
+    labels = blog_models.Tag.objects.all()
+    language = translation.get_language()
+    languages = settings.LANGUAGES
+    return render(request, 'sitemap/labels.html', {'labels': labels, 'language': language, 'languages': languages})
