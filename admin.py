@@ -15,4 +15,5 @@ class PageAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
 
 admin.site.register(Page, PageAdmin)
-admin.site.register(Sitemap,SitemapImage)
+admin.site.register(Sitemap)
+admin.site.register(SitemapImage)
