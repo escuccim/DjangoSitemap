@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^pages$', views.Pages, name='pages'),
     url(r'^blog$', views.Blog, name='blogs'),
     url(r'^labels$', views.Label, name='labels'),
+    url(r'^records$', views.Records, name='records'),
 ]

@@ -6,6 +6,7 @@ from .models import Sitemap, Page
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.utils import translation
 from blog import models as blog_models
+from recordcollection import models as record_models
 from django.conf import settings
 
 # Create your views here.
@@ -34,3 +35,10 @@ def Label(request):
     language = translation.get_language()
     languages = settings.LANGUAGES
     return render(request, 'sitemap/labels.html', {'labels': labels, 'language': language, 'languages': languages})
+
+
+def Records(request):
+    records = record_models.Record.objects.all()
+    language = translation.get_language()
+    languages = settings.LANGUAGES
+    return render(request, 'sitemap/records.html',  {'records': records, 'language': language, 'languages': languages})
