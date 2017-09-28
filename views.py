@@ -14,31 +14,31 @@ def Index(request):
     sitemaps = Sitemap.objects.all()
     language = translation.get_language()
     languages = settings.LANGUAGES
-    return render(request, 'sitemap/sitemapindex.html', { 'sitemaps': sitemaps, 'language' : language, 'languages' : languages})
+    return render(request, 'sitemap/sitemapindex.html', { 'sitemaps': sitemaps, 'language' : language, 'languages' : languages}, content_type='text/xml')
 
 
 def Pages(request):
     pages = Page.objects.all()
     language = translation.get_language()
     languages = settings.LANGUAGES
-    return render(request, 'sitemap/pages.html', {'pages': pages, 'language': language, 'languages' : languages})
+    return render(request, 'sitemap/pages.html', {'pages': pages, 'language': language, 'languages' : languages}, content_type='text/xml')
 
 
 def Blog(request):
     blogs = blog_models.Blog.objects.all()
     language = translation.get_language()
     languages = settings.LANGUAGES
-    return render(request, 'sitemap/blogs.html', { 'blogs' : blogs, 'language': language, 'languages' : languages })
+    return render(request, 'sitemap/blogs.html', { 'blogs' : blogs, 'language': language, 'languages' : languages }, content_type='text/xml')
 
 def Label(request):
     labels = blog_models.Tag.objects.all()
     language = translation.get_language()
     languages = settings.LANGUAGES
-    return render(request, 'sitemap/labels.html', {'labels': labels, 'language': language, 'languages': languages})
+    return render(request, 'sitemap/labels.html', {'labels': labels, 'language': language, 'languages': languages}, content_type='text/xml')
 
 
 def Records(request):
     records = record_models.Record.objects.all()
     language = translation.get_language()
     languages = settings.LANGUAGES
-    return render(request, 'sitemap/records.html',  {'records': records, 'language': language, 'languages': languages})
+    return render(request, 'sitemap/records.html',  {'records': records, 'language': language, 'languages': languages}, content_type='text/xml')
