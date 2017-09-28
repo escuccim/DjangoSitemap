@@ -30,11 +30,6 @@ class Sitemap(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
-    def get_priority(self):
-        return self.priority / 10
-
-
     def __unicode__(self):
         return self.uri
 
@@ -46,11 +41,6 @@ class SitemapImage(models.Model):
     title = models.CharField(max_length=151)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
-    def get_priority(self):
-        return self.priority / 10
-
 
     def __unicode__(self):
         return self.title
