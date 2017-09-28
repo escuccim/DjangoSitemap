@@ -8,7 +8,7 @@
 	 {% for record in records %}
 		<url>
 			<loc>http://{{ request.get_host }}/{{ language }}/records/{{ record.pk }}/{{ record.title_slug }}</loc>
-			<lastmod>{{ blog.updated_at|date:'c' }}</lastmod>
+			<lastmod>{{ record.updated_at|date:'c' }}</lastmod>
 			<changefreq>weekly</changefreq>
 			<priority>.6</priority>
 
@@ -19,8 +19,8 @@
 			{% if record.thumb %}
 				<image:image>
 					<image:loc>http://ericscuccimarra.com/{{ record.thumb }}</image:loc>
-					<image:caption>{{ blog.title }}</image:caption>
-					<image:title>{{ blog.title }}</image:title>
+					<image:caption>{{ record.title }}</image:caption>
+					<image:title>{{ record.title }}</image:title>
 				</image:image>
 			{% endif %}
 		</url>
