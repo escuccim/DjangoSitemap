@@ -5,24 +5,26 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	 >
 
-	 {% for blog in blogs %}
-		<url>
-			<loc>http://{{ request.get_host }}/{{ language }}/blog/{{ blog.slug }}</loc>
-			<lastmod>{{ blog.updated_at|date:'c' }}</lastmod>
-			<changefreq>weekly</changefreq>
-			<priority>.8</priority>
+	{% for language in languages %}
+		 {% for blog in blogs %}
+			<url>
+				<loc>http://{{ request.get_host }}/{{ language.0 }}/blog/{{ blog.slug }}</loc>
+				<lastmod>{{ blog.updated_at|date:'c' }}</lastmod>
+				<changefreq>weekly</changefreq>
+				<priority>.8</priority>
 
-			{% for other_language in languages %}
-				<xhtml:link rel="alternate" hreflang="{{ other_language.0 }}" href="http://{{ request.get_host }}/{{ other_language.0 }}/blog/{{ blog.slug }}" />
-			{% endfor %}
+				{% for other_language in languages %}
+					<xhtml:link rel="alternate" hreflang="{{ other_language.0 }}" href="http://{{ request.get_host }}/{{ other_language.0 }}/blog/{{ blog.slug }}" />
+				{% endfor %}
 
-			{% if blog.image %}
-				<image:image>
-					<image:loc>http://{{ request.get_host }}/{{ blog.image.url }}</image:loc>
-					<image:caption>{{ blog.title }}</image:caption>
-					<image:title>{{ blog.title }}</image:title>
-				</image:image>
-			{% endif %}
-		</url>
+				{% if blog.image %}
+					<image:image>
+						<image:loc>http://{{ request.get_host }}/{{ blog.image.url }}</image:loc>
+						<image:caption>{{ blog.title }}</image:caption>
+						<image:title>{{ blog.title }}</image:title>
+					</image:image>
+				{% endif %}
+			</url>
+		{% endfor %}
 	{% endfor %}
 </urlset>

@@ -5,16 +5,18 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	 >
 
-	 {% for label in labels %}
-		<url>
-			<loc>http://{{ request.get_host }}/{{ language }}/blog/label/{{ label.name }}</loc>
-			<lastmod>{{ blog.updated_at|date:'c' }}</lastmod>
-			<changefreq>weekly</changefreq>
-			<priority>.6</priority>
+	{% for language in languages %}
+		 {% for label in labels %}
+			<url>
+				<loc>http://{{ request.get_host }}/{{ language.0 }}/blog/label/{{ label.name }}</loc>
+				<lastmod>{{ blog.updated_at|date:'c' }}</lastmod>
+				<changefreq>weekly</changefreq>
+				<priority>.6</priority>
 
-			{% for other_language in languages %}
-				<xhtml:link rel="alternate" hreflang="{{ other_language.0 }}" href="http://{{ request.get_host }}/{{ other_language.0 }}/blog/label/{{ label.name }}" />
-			{% endfor %}
-		</url>
+				{% for other_language in languages %}
+					<xhtml:link rel="alternate" hreflang="{{ other_language.0 }}" href="http://{{ request.get_host }}/{{ other_language.0 }}/blog/label/{{ label.name }}" />
+				{% endfor %}
+			</url>
+		{% endfor %}
 	{% endfor %}
 </urlset>

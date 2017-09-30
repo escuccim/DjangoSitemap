@@ -5,24 +5,26 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	 >
 
-	 {% for record in records %}
-		<url>
-			<loc>http://{{ request.get_host }}/{{ language }}/records/{{ record.pk }}/{{ record.title_slug }}</loc>
-			<lastmod>{{ record.updated_at|date:'c' }}</lastmod>
-			<changefreq>weekly</changefreq>
-			<priority>.6</priority>
+	{% for language in languages %}
+		 {% for record in records %}
+			<url>
+				<loc>http://{{ request.get_host }}/{{ language.0 }}/records/{{ record.pk }}/{{ record.title_slug }}</loc>
+				<lastmod>{{ record.updated_at|date:'c' }}</lastmod>
+				<changefreq>weekly</changefreq>
+				<priority>.6</priority>
 
-			{% for other_language in languages %}
-				<xhtml:link rel="alternate" hreflang="{{ other_language.0 }}" href="http://{{ request.get_host }}/{{ other_language.0 }}/records/{{ record.pk }}/{{ record.title_slug }}" />
-			{% endfor %}
+				{% for other_language in languages %}
+					<xhtml:link rel="alternate" hreflang="{{ other_language.0 }}" href="http://{{ request.get_host }}/{{ other_language.0 }}/records/{{ record.pk }}/{{ record.title_slug }}" />
+				{% endfor %}
 
-			{% if record.thumb %}
-				<image:image>
-					<image:loc>http://ericscuccimarra.com/{{ record.thumb }}</image:loc>
-					<image:caption>{{ record.title }}</image:caption>
-					<image:title>{{ record.title }}</image:title>
-				</image:image>
-			{% endif %}
-		</url>
+				{% if record.thumb %}
+					<image:image>
+						<image:loc>http://ericscuccimarra.com/{{ record.thumb }}</image:loc>
+						<image:caption>{{ record.title }}</image:caption>
+						<image:title>{{ record.title }}</image:title>
+					</image:image>
+				{% endif %}
+			</url>
+		{% endfor %}
 	{% endfor %}
 </urlset>
