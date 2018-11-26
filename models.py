@@ -35,7 +35,7 @@ class Sitemap(models.Model):
 
 
 class SitemapImage(models.Model):
-    page = models.ForeignKey(Page)
+    page = models.ForeignKey(Page, on_delete=models.CASCADE)
     uri = models.CharField(max_length=100)
     caption = models.CharField(max_length=151)
     title = models.CharField(max_length=151)
